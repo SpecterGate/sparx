@@ -1,4 +1,4 @@
-const express = require('express');
+/const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
@@ -7,7 +7,7 @@ const app = express();
 const PORT = 3000; 
 
 app.use('/', createProxyMiddleware({
-    target: 'http://165.120.113.218:8080',
+    target: 'https://feeding-cordless-devel-student.trycloudflare.com',
     changeOrigin: true,
     ws: true, // Support for WebSockets
     onProxyRes: function (proxyRes, req, res) {
