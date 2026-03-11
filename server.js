@@ -7,7 +7,7 @@ const app = express();
 const PORT = 3000; 
 
 app.use('/', createProxyMiddleware({
-    target: 'https://feeding-cordless-devel-student.trycloudflare.com',
+    target: 'https://rentals-their-bookmark-investigator.trycloudflare.com',
     changeOrigin: true,
     ws: true, // Support for WebSockets
     onProxyRes: function (proxyRes, req, res) {
