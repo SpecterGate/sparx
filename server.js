@@ -12,7 +12,7 @@ app.use(basicAuth({
 }));
 
 app.use('/', createProxyMiddleware({
-    target: 'https://blooket.com',
+    target: 'https://play.blooket.com/play',
     changeOrigin: true,
     ws: true,
     selfHandleResponse: true,
