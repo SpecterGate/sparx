@@ -12,7 +12,7 @@ app.use(basicAuth({
 }));
 
 app.use('/', createProxyMiddleware({
-    target: 'https://moderators-article-participate-infrastructure.trycloudflare.com',
+    target: 'https://blooket.com',
     changeOrigin: true,
     ws: true,
     selfHandleResponse: true,
