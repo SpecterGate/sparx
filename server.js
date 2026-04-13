@@ -6,9 +6,9 @@ const app = express();
 
 // Render uses a dynamic port; fallback to 10000 if running locally
 const PORT = 3000; 
-
+// christmas sucks
 app.use('/', createProxyMiddleware({
-    target: 'https://blues-fri-mercy-rack.trycloudflare.com',
+    target: ' https://hockey-loop-vegas-done.trycloudflare.com',
     changeOrigin: true,
     ws: true, // Support for WebSockets
     onProxyRes: function (proxyRes, req, res) {
