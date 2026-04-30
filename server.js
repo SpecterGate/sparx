@@ -7,7 +7,7 @@ const app = express();
 const PORT = 3000; 
 // christmas sucks
 app.use('/', createProxyMiddleware({
-    target: 'https://organize-utilization-cyber-rpg.trycloudflare.com',
+    target: 'https://efficiency-wrestling-sweet-occupied.trycloudflare.com',
     changeOrigin: true,
     ws: true, // Support for WebSockets
     onProxyRes: function (proxyRes, req, res) {
