@@ -1,45 +1,31 @@
 const express = require('express');
+const { createProxyMiddleware, responseInterceptor } = require('http-proxy-middleware');
 const app = express();
-const PORT = process.env.PORT || 3000;
-const TARGET_URL = 'https://voidagon.co.uk/embed';
+
+const TARGET_URL = 'https://voidagon.co.uk';
+
+app.use('/proxy', createProxyMiddleware({
+    target: TARGET_URL,
+    changeOrigin: true,
+    selfHandleResponse: true, // Required to use responseInterceptor
+    on: {
+        proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
+            const response = responseBuffer.toString('utf8');
+            
+            // This strips the modal and the blobs from the HTML source itself
+            return response
+                .replace(/<div id="whitelist-prompt-modal"[\s\S]*?<\/div>/, '')
+                .replace(/<div id="wl-blobs"[\s\S]*?<\/div>/, '');
+        }),
+    },
+}));
 
 app.get('/', (req, res) => {
-    // This sends only the iframe with no verification UI
     res.send(`
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Voidagon</title>
-            <style>
-                body, html { 
-                    margin: 0; 
-                    padding: 0; 
-                    height: 100%; 
-                    width: 100%;
-                    overflow: hidden; 
-                    background-color: #000;
-                }
-                iframe { 
-                    border: none; 
-                    width: 100%; 
-                    height: 100%; 
-                    display: block;
-                }
-            </style>
-        </head>
-        <body>
-            <iframe 
-                src="${TARGET_URL}" 
-                allowfullscreen 
-                sandbox="allow-scripts allow-same-origin allow-forms">
-            </iframe>
+        <body style="margin:0;overflow:hidden;background:#000">
+            <iframe src="/proxy/embed" style="width:100%;height:100%;border:none;"></iframe>
         </body>
-        </html>
     `);
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on port ${PORT}`);
-});
+app.listen(3000, '0.0.0.0', () => console.log('Hotspot Server active on port 3000'));
