@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
-const TARGET_URL = 'https://voidagon.co.uk';
+const TARGET_URL = 'https://voidagon.co.uk/embed';
 
 app.get('/', (req, res) => {
     // This sends only the iframe with no verification UI
