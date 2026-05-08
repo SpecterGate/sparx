@@ -1,17 +1,17 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
-const TARGET_URL = 'https://voidagon.co.uk/embed';
-
-// We have removed the http-proxy-middleware entirely.
+const TARGET_URL = 'https://voidagon.co.uk';
 
 app.get('/', (req, res) => {
-    // Send a clean, full-screen iframe
+    // This sends only the iframe with no verification UI
     res.send(`
         <!DOCTYPE html>
-        <html>
+        <html lang="en">
         <head>
-            <title>Embed</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Voidagon</title>
             <style>
                 body, html { 
                     margin: 0; 
@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
                     height: 100%; 
                     width: 100%;
                     overflow: hidden; 
+                    background-color: #000;
                 }
                 iframe { 
                     border: none; 
