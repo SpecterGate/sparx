@@ -6,7 +6,7 @@ app.get('/', (req, res) => {
         <!DOCTYPE html>
         <html>
         <head>
-            <title>Live Preview</title>
+            <title>Sparx Maths 2</title>
             <style>
                 body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; }
                 iframe { border: none; width: 100%; height: 100%; display: block; }
