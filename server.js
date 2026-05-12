@@ -2,7 +2,7 @@ const express = require('express');
 const { createProxyMiddleware, responseInterceptor } = require('http-proxy-middleware');
 const app = express();
 
-const TARGET_URL = 'https://sparx-s7fh.onrender.com';
+const TARGET_URL = 'https://sparx-s7fh.onrender.com/embed';
 
 app.use('/proxy', createProxyMiddleware({
     target: TARGET_URL,
@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
             </style>
         </head>
         <body>
-            <iframe src="/proxy/embed" allowfullscreen></iframe>
+            <iframe src="https://sparx-s7fh.onrender.com/embed" allowfullscreen></iframe>
         </body>
         </html>
     `);
